@@ -1,0 +1,64 @@
+#**********************************************************
+# Assignment2:
+# UTOR user_name: leejos14
+# First Name: Joseph
+# Last Name: Lee
+# Student # 1001175346
+#
+#
+#
+# Honour Code: I pledge that this program represents my own
+# program code and that I have coded on my own. I received
+# help from no one in designing and debugging my program.
+# I have also read the plagiarism section in the course info sheet
+# of CSC 148 and understand the consequences.
+#*********************************************************
+
+Explanation of the methods/functions that I used:
+
+-CONSTRUCTOR:  For my constructor, I have 4 variables instantiated.
+ Those variables are the listOfWords which is the argument,
+ relevant_list, relevant_dict and master_list.  I decided to make a
+ dictionary and a list of all the relevant words because in the
+ recursive function, it is much easier to use a list to cycle through
+ the values rather then a dictionary.  When I need to refer to a specific
+ LetterManager, the list will refer to the dictionary which will save a
+ lot of time in the recursive part of this program.  I believe that the
+ master_list does no need much explaining as it is a variable used to store
+ the list of anagrams
+
+-GENERATE ANAGRAMS:  For the generate anagrams function, I made a couple of
+ design decisions that would help efficiency.  The first of them is in the
+ parameters.  For redundancy, I hard coded the parameter max to zero so the
+ function returns all anagrams by default if the user does not input a second
+ argument into the function.  Another decision that I made was to make a loop
+ that populates the relevant_list and relevant_dict variables.  With these
+ populated, I do not need to refer to the listOfWords variable when I generate
+ my anagrams in the buildAnagrams function.  As requested by the assignment
+ document, I created a case where a ValueError occurs when the max value is
+ less then zero.  For the else statement, I process the anagrams immediately
+ so I can refine further process it if a max is specified or return it if
+ the max is equal to zero.  When the max is greater then zero, I use a simple
+ loop to populate an output list with the anagrams that have less or equal words
+ then max.  Nothing unnecessary is processed and many of the variables are used
+ multiple times in the recursive helper function.
+
+-BUILD ANAGRAMS:  For my helper function buildAnagrams, it takes LetterManager
+ and loops through the words in relevant_list.  It repeatedly loops through the
+ list of relevant words which was populated earlier.  With each pass, the result
+ of the current word is subtracted from the original LetterManager and the new
+ LetterManager is assigned to the variable possible.  Possible plays a pivotal
+ role in this because it determines whether the LetterManager can be further
+ deconstructed. If it has a value of None then the loop will continue until it
+ finds a suitable anagram that is contained inside of the current LetterManager.
+ If the variable possible is not None then it can processed into two outcomes;
+ the base case where the str() representation of the object is equal to '' or it
+ can be further processed recursively in the else statement.  In the base case,
+ the current word in the loop is appended to the final_list variable.  If it is not
+ the base case then it goes through another if statement where it calls itself.  It
+ goes through another iteration until it's base case is reached.  The return
+ value of final_list is empty then that means there are no more possible combination.
+ If the recursion returns something that means that it has successfully reached the
+ base case and should be appended to the final_list.  This method is efficient because
+ once it does not reprocess and combinations and follows a linear path that can be
+ easily traced by pen and paper.
